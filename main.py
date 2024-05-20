@@ -9,7 +9,6 @@ from indoor_sensor import read_indoor_sensor
 from utilities.utils import get_wind_direction, log_value, get_trend
 from time import ticks_ms, sleep
 from utilities.draw_screen import draw_static, draw_current_weather, draw_indoor, draw_trend_f
-from utilities.graphing import array_to_graph
 import utilities.fonts as fonts
 import utilities.colors as colors
 import dht
@@ -77,8 +76,6 @@ while True:
         log_value(i_temp, indoor['temperature'])
         log_value(i_hum, indoor['humidity'])
         draw_indoor(display, indoor['temperature'], indoor['humidity'], i_temp, i_hum)
-        array_to_graph(display, i_temp, 210,90,0,15)
-        array_to_graph(display, i_hum, 210,165,0,15)
         start_tick_indoor = current_tick
         
     sleep(1)

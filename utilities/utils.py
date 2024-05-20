@@ -16,10 +16,19 @@ def get_wind_direction(degrees):
         return "EA.raw"
     elif degrees >= 293 and degrees <= 337:
         return "SE.raw"
-        
+
+def get_feels_like(value):
+    if value < 5:
+        return "cold_face.raw"
+    elif value > 20:
+        return "hot_face.raw"
+    else:
+        return "temp_face.raw"
+
+
         
 def log_value(array, value):
-    if len(array) >= 100:
+    if len(array) >= 108:
         array.pop(0)
     array.append(value)
     
