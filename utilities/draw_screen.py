@@ -15,7 +15,7 @@ from utilities.graphing import array_to_graph
         display.draw_sprite(mv_icon, x, y, icon_WIDTH, icon_HEIGHT)
 
 """
-# DRAW STATIS DISPLAY ELEMENTS
+# DRAW STATIc DISPLAY ELEMENTS
 def draw_static(display):
     display.clear(color=colors.BG, hlines=24)
     temp_sprite = display.load_sprite(r"icons/THERMOMETER_30.raw", 30, 30)
@@ -27,13 +27,16 @@ def draw_static(display):
     atmo_sprite_m = memoryview(atmo_sprite)
     wind_sprite_m = memoryview(wind_sprite)
         
-    display.draw_sprite(temp_sprite_m, 10, 50, 30, 30)
-    display.draw_sprite(hum_sprite_m, 10, 90, 30, 30)
-    display.draw_sprite(atmo_sprite_m, 10, 130, 30, 30)
-    display.draw_sprite(wind_sprite_m, 10, 170, 30, 30)
-    display.draw_text(225, 10, f"Indoor", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_rectangle(210, 90, 110, 30, colors.FG_SHAPE_D)
-    display.draw_rectangle(210, 170, 110, 30, colors.FG_SHAPE_D)
+    display.draw_sprite(temp_sprite_m, 10, 60, 30, 30)
+    display.draw_sprite(hum_sprite_m, 160, 60, 30, 30)
+    display.draw_sprite(atmo_sprite_m, 10, 100, 30, 30)
+    display.draw_sprite(wind_sprite_m, 160, 100, 30, 30)
+    display.draw_sprite(temp_sprite_m, 10, 180, 30, 30)
+    display.draw_sprite(hum_sprite_m, 100, 180, 30, 30)
+    display.draw_sprite(atmo_sprite_m, 200, 180, 30, 30)
+   
+   
+    display.draw_rectangle(10,10,300,40,colors.FG_SHAPE_L)
 
 # DRAW CURRENT WEATHER
 def draw_current_weather(display, wf):
@@ -46,47 +49,44 @@ def draw_current_weather(display, wf):
     wind_dir_sprite_m = memoryview(wind_dir_sprite)
     feels_like_sprite_m = memoryview(feels_like_sprite)
     
-    display.draw_sprite(wind_dir_sprite_m, 170, 170, 30, 30)
+    
     
     # Display Main Weather
-    display.fill_rectangle(10, 10, 160, 30, colors.BG)
-    display.fill_rectangle(170, 30, 150, 10, colors.BG)
-    display.draw_sprite(weather_sprite_m, 10, 10, 30, 30)
-    display.draw_text(35, 10, f"{wf['main_forecast']}", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_text(35, 31, f"{wf['description_forecast']}", fonts.BALLY, colors.FG_TEXT_L,  background=colors.BG)
-    sleep(0.25)
+    display.fill_rectangle(11, 11, 298, 38, colors.BG)
+    display.draw_sprite(weather_sprite_m, 270, 15, 30, 30)
+    display.draw_text(15, 21, f"Forecast: ", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+    display.draw_text(100, 14, f"{wf['main_forecast']}", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
+    display.draw_text(15, 38, f"{wf['description_forecast']}", fonts.BALLY, colors.FG_TEXT_L,  background=colors.BG)
+
     
     # Display Current Temperature
-    display.fill_rectangle(70, 50, 100, 30, colors.BG)
-    display.draw_text(73, 55, f"{wf['current_temperature']}", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_text(140, 65, f"C", fonts.ARCADE, colors.FG_SHAPE_L,  background=colors.BG)
-    sleep(0.25)
+    display.fill_rectangle(40, 60, 110, 30, colors.BG)
+    display.draw_text(42, 70, f"{wf['current_temperature']}C", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+
     
     #Display Current Humidity
-    display.fill_rectangle(70, 90, 100, 30, colors.BG)
-    display.draw_text(73, 95, f"{wf['humidity']}", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_text(140, 105, f"%", fonts.ARCADE, colors.FG_SHAPE_L,  background=colors.BG)
-    sleep(0.25)
+    display.fill_rectangle(190, 60, 110, 30, colors.BG)
+    display.draw_text(192, 70, f"{wf['humidity']}%", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+
     
     # Display Current Pressure
-    display.fill_rectangle(70, 130, 100, 30, colors.BG)
-    display.draw_text(73, 135, f"{wf['pressure']}", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_text(140, 145, f"hPa", fonts.ARCADE, colors.FG_SHAPE_L,  background=colors.BG)
-    sleep(0.25)
+    display.fill_rectangle(40, 100, 110, 30, colors.BG)
+    display.draw_text(42, 110, f"{wf['pressure']}hPa", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+
     
     # Display Current Wind Speed
-    display.fill_rectangle(70, 170, 100, 30, colors.BG)
-    display.draw_text(73, 175, f"{wf['wind_speed']}", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_text(140, 185, f"m/s", fonts.ARCADE, colors.FG_SHAPE_L,  background=colors.BG)
-    sleep(0.25)
+    display.fill_rectangle(190, 100, 50, 30, colors.BG)
+    display.draw_sprite(wind_dir_sprite_m, 250, 100, 30, 30)
+    display.draw_text(192, 110, f"{wf['wind_speed']}m/s", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+
     
     # Display Current Feels Like
-    display.draw_sprite(feels_like_sprite_m, 10, 210, 30, 30)
-    display.draw_text(73, 216, f"{wf['feels_like']}", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_text(140, 228, f"C", fonts.ARCADE, colors.FG_SHAPE_L,  background=colors.BG)
+    display.draw_sprite(feels_like_sprite_m, 10, 140, 30, 30)
+    display.draw_text(42, 150, f"Feels Like: {wf['feels_like']}C", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+    
 
 # DRAW INDOOR MEASUREMENTS AND TREND
-def draw_indoor(display, temp, hum, i_temp, i_hum):
+def draw_indoor(display, temp, hum,press, i_temp, i_hum, i_press):
 
     # Get Indoor Trend Icons
     up_sprite = display.load_sprite(r"icons/ARROW_UP.raw", 30, 30)
@@ -99,27 +99,30 @@ def draw_indoor(display, temp, hum, i_temp, i_hum):
 
     i_temp_sprite = sprites[get_trend(i_temp)]
     i_hum_sprite = sprites[get_trend(i_hum)]
+    i_press_sprite = sprites[get_trend(i_press)]
 
     i_temp_sprite_m = memoryview(i_temp_sprite)
     i_hum_sprite_m = memoryview(i_hum_sprite)
+    i_press_sprite_m = memoryview(i_press_sprite)
 
     # Display Indoor Temperature
-    display.fill_rectangle(210, 50, 110, 30, colors.BG)
-    display.draw_text(210, 53, f"{temp} C", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_sprite(i_temp_sprite_m, 280, 50, 30, 30)
-    sleep(0.25)
-    
-    array_to_graph(display, i_temp, 210,90,0,30)
-    sleep(0.25)
-    
+    display.fill_rectangle(40, 180, 70, 30, colors.BG)
+    display.draw_text(45, 190, f"{temp}", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+    display.draw_sprite(i_temp_sprite_m, 10, 210, 30, 30)
+    array_to_graph(display, i_temp, 40,210,0,30)
     
     # Display Indoor Humidity
-    display.fill_rectangle(210, 130, 110, 30, colors.BG)
-    display.draw_text(210, 133, f"{hum} %", fonts.UNISPACE, colors.FG_TEXT_L,  background=colors.BG)
-    display.draw_sprite(i_hum_sprite_m, 280, 130, 30, 30)
-    sleep(0.25)
+    display.fill_rectangle(130, 180, 70, 30, colors.BG)
+    display.draw_text(135, 190, f"{hum}", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+    display.draw_sprite(i_hum_sprite_m, 100, 210, 30, 30)
+    array_to_graph(display, i_hum, 130,210,0,30)
+    
+    # Display Indoor Pressure
+    display.fill_rectangle(230, 180, 70, 30, colors.BG)
+    display.draw_text(235, 190, f"{press}", fonts.ARCADE, colors.FG_TEXT_L,  background=colors.BG)
+    display.draw_sprite(i_press_sprite_m, 200, 210, 30, 30)
+    array_to_graph(display, i_press, 230,210,0,30)
 
-    array_to_graph(display, i_hum, 210,170,0,30)
 
 # DRAW CURRENT WEATHER TREND
 def draw_trend_f(display, f_temp, f_hum, f_press, f_wind, f_feels): 
@@ -142,12 +145,12 @@ def draw_trend_f(display, f_temp, f_hum, f_press, f_wind, f_feels):
     f_atmo_sprite_m = memoryview(f_atmo_sprite)
     f_wind_sprite_m = memoryview(f_wind_sprite)
     f_feels_sprite_m = memoryview(f_feels_sprite)
-    
-    display.draw_sprite(f_temp_sprite_m, 40, 50, 30, 30)
-    display.draw_sprite(f_hum_sprite_m, 40, 90, 30, 30)
-    display.draw_sprite(f_atmo_sprite_m, 40, 130, 30, 30)
-    display.draw_sprite(f_wind_sprite_m, 40, 170, 30, 30)
-    display.draw_sprite(f_feels_sprite_m, 40, 210, 30, 30)
+
+    display.draw_sprite(f_temp_sprite_m, 110, 60, 30, 30)
+    display.draw_sprite(f_hum_sprite_m, 280, 60, 30, 30)
+    display.draw_sprite(f_atmo_sprite_m, 110, 100, 30, 30)
+    display.draw_sprite(f_wind_sprite_m, 280, 100, 30, 30)
+    display.draw_sprite(f_feels_sprite_m, 280, 140, 30, 30)
     
     
     

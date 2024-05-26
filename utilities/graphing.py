@@ -15,9 +15,9 @@ def array_to_graph(display, array, start_x, start_y, min_v, max_v):
     min_t = min(array)
     
     new_array = scale_array(array, min_v+1, max_v-1)
-    display.fill_rectangle(start_x+1, start_y+1, 108, 28, colors.BG)
+    display.fill_rectangle(start_x, start_y, 70, 30, colors.BG)
      
-    display.draw_text(start_x, start_y-9, f"{min_t}-{max_t}", fonts.BALLY, colors.FG_SHAPE_L,  background=colors.BG)
+    #display.draw_text(start_x, start_y-9, f"{min_t}-{max_t}", fonts.BALLY, colors.FG_SHAPE_L,  background=colors.BG)
 
     for i in range(len(new_array)):
         

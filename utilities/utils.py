@@ -28,7 +28,7 @@ def get_feels_like(value):
 
         
 def log_value(array, value):
-    if len(array) >= 108:
+    if len(array) >= 68:
         array.pop(0)
     array.append(value)
     
