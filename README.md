@@ -23,7 +23,7 @@ Refactored application with muli threading. Running display updates on separate 
 Added BME 280 and VEML 7700 sensors. VMEL 7700 not yet displayed on screen. (Realestate issues, will be fixed soon)
 
 ### Schematic
-Current Schematic ![Image](/Docs/Cirquit.png)
+Current Schematic ![Image](/Docs/Cirquit_ver2.png)
 
 ### Housing:
 Have not yet decided on wether to make this from wood or to 3D print it. It would be a great excuse to buy a 3D printer!
